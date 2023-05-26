@@ -1,7 +1,12 @@
-/* .fs-4{
-  width: 50px;
-    height: 50px;
-    background-image: url("../img/logo.svg");
-    background-size: cover;
-    z-index: 1;
+/* .active{
+font-weight: 700;
+color: yellow;
+}
+
+.navLink{
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 400;
+  color: white;
 } */
