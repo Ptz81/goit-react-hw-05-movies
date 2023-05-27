@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const instance = axios.create({
+export const instance = axios.create({
     method: 'GET',
+    IMG: 'https://image.tmdb.org/t/p/w342',
     baseURL: 'https://api.themoviedb.org/3',
     params: {
         api_key: 'c91e59fa560fc5d9b1a82432410ac72e',
@@ -20,8 +21,8 @@ export async function getTrendMovies() {
   }
 }
 
-export async function getRequestedMovie() {
-    const routeWay = `/search/search-movies`;
+export async function getRequestedMovie(movieId) {
+    const routeWay = `/search/${movieId}`;
   try {
     const { data } = await instance.get(routeWay);
     return data.results;
@@ -30,8 +31,8 @@ export async function getRequestedMovie() {
   }
 }
 
-export async function getMovieDetails() {
-    const routeWay = `/movies/get-movie-details`;
+export async function getMovieDetails(movieId) {
+    const routeWay = `/movie/${movieId}`;
   try {
     const { data } = await instance.get(routeWay);
     return data.results;
@@ -40,8 +41,8 @@ export async function getMovieDetails() {
   }
 }
 
-export async function getMovieCredits() {
-    const routeWay = `/movies/get-movie-credits`;
+export async function getMovieCredits(movieId) {
+    const routeWay = `/movie/${movieId}/credits`;
   try {
     const { data } = await instance.get(routeWay);
     return data.results;
@@ -50,8 +51,8 @@ export async function getMovieCredits() {
   }
 }
 
-export async function getMovieReview() {
-    const routeWay = `/movies/get-movie-reviews`;
+export async function getMovieReview(movieId) {
+    const routeWay = `/movie/${movieId}/reviews`;
   try {
     const { data } = await instance.get(routeWay);
     return data.results;
