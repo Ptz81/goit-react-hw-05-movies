@@ -1,7 +1,10 @@
 // import { useState } from "react"
-import { useEffect, useState } from "react";
-import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
+import Cast from '../../components/Cast/Cast';
+import Reviews from '../../components/Reviews/Reviews';
+import { Suspense, useEffect, useState } from "react";
+import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import { getRequestedMovie } from '../../Service/Api';
+import css from '../../components/App.module.css'
 
 import spareIMG from '../../components/img/spareIMG.png'
 const IMAGEERR = 'https://image.tmdb.org/t/p/w500/';
@@ -36,7 +39,7 @@ const MoviesDetails = () => {
     movie;
   const image = poster_path ? IMAGEERR + poster_path : spareIMG;
   const userScore = Math.round((Number(vote_average) * 100) / 10);
-  const movieGenres = genres.map(genre => genre.name).join(' ');
+  const movieGenres = genres.map(genre => genre.name).join('');
   const releaseDate = release_date.slice(0, 4);
 
   return (
@@ -44,7 +47,7 @@ const MoviesDetails = () => {
         {movie && (
         <>
           <button className="btn btn-success m2" onClick={handleClick}>
-            {location?.state?.label ?? 'Go Back'}
+            {locationDetails?.state?.label?? 'Go Back'}
           </button>
           <div className={css.box}>
             <img src={`${image}}`} alt={title} />
@@ -66,8 +69,8 @@ const MoviesDetails = () => {
                 <Link
                   to={`/movies/${movieId}/cast`}
                   state={{
-                    from: location.state.from,
-                    label: location.state.label,
+                    from: locationDetails.state.from,
+                    label: locationDetails.state.label,
                   }}
                 >
                   Cast
@@ -78,8 +81,8 @@ const MoviesDetails = () => {
                 <Link
                   to={`/movies/${movieId}/reviews`}
                   state={{
-                    from: location.state.from,
-                    label: location.state.label,
+                    from: locationDetails.state.from,
+                    label: locationDetails.state.label,
                   }}
                 >
                   Reviews
@@ -88,9 +91,9 @@ const MoviesDetails = () => {
             </ul>
           </div>
 
-          <Suspense fallback={<Loading timeout={3000} />}>
+          <Suspense fallback={<p>Loading...</p>}>
             <Routes>
-              <Route path="/cast" element={<Cast />} />
+              <Route path="/cast" element={<Cast/>} />
               <Route path="/reviews" element={<Reviews />} />
             </Routes>
           </Suspense>
