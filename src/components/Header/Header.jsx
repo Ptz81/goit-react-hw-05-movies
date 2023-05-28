@@ -1,4 +1,4 @@
-const { NavLink} = require("react-router-dom")
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (

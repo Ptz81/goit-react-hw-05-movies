@@ -1,30 +1,31 @@
-// import { useState } from "react"
+import { useEffect, useState, Suspense } from "react";
+import { Link, useLocation, useNavigate, useParams, Routes, Route } from "react-router-dom";
+import { getMovieDetails } from '../../Service/Api';
+
 import Cast from '../../components/Cast/Cast';
 import Reviews from '../../components/Reviews/Reviews';
-import { Suspense, useEffect, useState } from "react";
-import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
-import { getRequestedMovie } from '../../Service/Api';
-import css from '../../components/App.module.css'
+import css from '../../components/App.module.css';
+import spareIMG from '../../components/img/spareIMG.png';
 
-import spareIMG from '../../components/img/spareIMG.png'
 const IMAGEERR = 'https://image.tmdb.org/t/p/w500/';
 
 const MoviesDetails = () => {
   const [isLoad, setIsLoad] = useState(false);
-  const [film, setFilm] = useState('');
+  const [film, setFilm] = useState(null);
   const { movieId } = useParams();
   const movies = JSON.parse(localStorage.getItem('movie'));
   const movie = movies && movies.find(elem => elem.id === movieId);
   const locationDetails = useLocation();
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(locationDetails.state.from);
+    navigate(locationDetails?.state?.from || '/');
   };
-   useEffect(() => {
+
+  useEffect(() => {
     const fetchFilmData = async () => {
       setIsLoad(true);
       try {
-        const movieData = await getRequestedMovie(movieId);
+        const movieData = await getMovieDetails(movieId);
         setFilm(movieData);
       } catch (e) {
         console.log(e);
@@ -35,30 +36,31 @@ const MoviesDetails = () => {
     fetchFilmData();
   }, [movieId]);
 
-   const { genres, title, release_date, overview, vote_average, poster_path } =
-    movie;
+  const { genres, title, release_date, overview, vote_average, poster_path } =
+    movie || {};
+
   const image = poster_path ? IMAGEERR + poster_path : spareIMG;
   const userScore = Math.round((Number(vote_average) * 100) / 10);
-  const movieGenres = genres.map(genre => genre.name).join('');
-  const releaseDate = release_date.slice(0, 4);
+  const movieGenres = genres && genres.map(genre => genre.name).join('');
+  const releaseDate = release_date && release_date.slice(0, 4);
 
   return (
     <>
-        {movie && (
+      {film && (
         <>
           <button className="btn btn-success m2" onClick={handleClick}>
-            {locationDetails?.state?.label?? 'Go Back'}
+            {locationDetails?.state?.label || 'Go Back'}
           </button>
           <div className={css.box}>
-            <img src={`${image}}`} alt={title} />
+            <img src={image} alt={title} />
 
             <div className={css.description}>
               <h2>{title}</h2>
-              <p>User Score: {vote_average * 10}%</p>
+              <p>User Score: {userScore}%</p>
               <h3>Overview</h3>
               <p>{overview}</p>
               <h4>Genres</h4>
-              <p>{genres.map(genre => genre.name + ' ')}</p>
+              <p>{movieGenres}</p>
             </div>
           </div>
 
@@ -69,8 +71,8 @@ const MoviesDetails = () => {
                 <Link
                   to={`/movies/${movieId}/cast`}
                   state={{
-                    from: locationDetails.state.from,
-                    label: locationDetails.state.label,
+                    from: locationDetails.state?.from || '/',
+                    label: locationDetails.state?.label,
                   }}
                 >
                   Cast
@@ -81,8 +83,8 @@ const MoviesDetails = () => {
                 <Link
                   to={`/movies/${movieId}/reviews`}
                   state={{
-                    from: locationDetails.state.from,
-                    label: locationDetails.state.label,
+                    from: locationDetails.state?.from || '/',
+                    label: locationDetails.state?.label,
                   }}
                 >
                   Reviews
@@ -93,8 +95,8 @@ const MoviesDetails = () => {
 
           <Suspense fallback={<p>Loading...</p>}>
             <Routes>
-              <Route path="/cast" element={<Cast/>} />
-              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/movies/:movieId/cast" element={<Cast />} />
+              <Route path="/movies/:movieId/reviews" element={<Reviews />} />
             </Routes>
           </Suspense>
         </>
@@ -102,4 +104,5 @@ const MoviesDetails = () => {
     </>
   );
 };
+
 export default MoviesDetails;

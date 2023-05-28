@@ -5,7 +5,7 @@ import Layout from './Layout/Layout';
 
 const Home = lazy(() => import('../pages/Home/Home.jsx'));
 const Movies = lazy(() => import('../pages/Movies/Movies'));
-const MovieDetails = lazy(() => import('../pages/Movies/MovieNavig'));
+const MovieDetails = lazy(() => import('../pages/Movies/MoviesDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 

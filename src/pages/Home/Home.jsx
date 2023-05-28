@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getTrendMovies } from '../../Service/Api';
 
+
 function Home() {
   const location = useLocation();
   const [filmList, setFilmList] = useState([]);

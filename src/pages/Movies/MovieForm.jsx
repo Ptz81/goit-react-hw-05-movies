@@ -1,4 +1,4 @@
-const { useState } = require("react")
+import React, { useState } from "react";
 
 const MovieForm = ({formSubmit}) => {
   const [value, setValue] = useState('');
@@ -34,5 +34,5 @@ const MovieForm = ({formSubmit}) => {
   )
 
 }
-
 export default MovieForm;
+
