@@ -1,5 +1,5 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { Link, Route, Routes, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import MoviesForm from '../Movies/MovieForm';
 import MoviesDetails from './MoviesDetails';
 
@@ -57,6 +57,41 @@ const Movies = () => {
               <p>{filmList.genres.map(genre => genre.name + ' ')}</p>
             </div>
           </div>
+          <div className={css.additional}>
+            <h5>Additional information</h5>
+            <ul>
+              <li>
+                <Link
+                  to={`/movies/${movieId}/cast`}
+                  state={{
+                    from: location.state.from,
+                    label: location.state.label,
+                  }}
+                >
+                  Cast
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to={`/movies/${movieId}/reviews`}
+                  state={{
+                    from: location.state.from,
+                    label: location.state.label,
+                  }}
+                >
+                  Reviews
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <Suspense fallback={<p>Loading ...</p>}>
+            <Routes>
+              <Route path="/movies/:movieId/cast" element={<Cast />} />
+              <Route path="/movies/:movieId/reviews" element={<Reviews />} />
+            </Routes>
+          </Suspense>
         </>
       )}
     </>

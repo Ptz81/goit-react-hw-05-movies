@@ -10,7 +10,6 @@ import spareIMG from '../../components/img/spareIMG.png';
 const IMAGEERR = 'https://image.tmdb.org/t/p/w500/';
 
 const MoviesDetails = () => {
-  const [isLoad, setIsLoad] = useState(false);
   const [film, setFilm] = useState(null);
   const { movieId } = useParams();
   const movies = JSON.parse(localStorage.getItem('movie'));
@@ -23,26 +22,21 @@ const MoviesDetails = () => {
 
   useEffect(() => {
     const fetchFilmData = async () => {
-      setIsLoad(true);
       try {
         const movieData = await getMovieDetails(movieId);
         setFilm(movieData);
       } catch (e) {
         console.log(e);
-      } finally {
-        setIsLoad(false);
       }
     };
     fetchFilmData();
   }, [movieId]);
 
-  const { genres, title, release_date, overview, vote_average, poster_path } =
-    movie || {};
+  const { genres, title, overview, vote_average, poster_path } = movie || {};
 
   const image = poster_path ? IMAGEERR + poster_path : spareIMG;
   const userScore = Math.round((Number(vote_average) * 100) / 10);
   const movieGenres = genres && genres.map(genre => genre.name).join('');
-  const releaseDate = release_date && release_date.slice(0, 4);
 
   return (
     <>
