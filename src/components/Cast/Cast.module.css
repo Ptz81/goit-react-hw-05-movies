@@ -1,0 +1,26 @@
+.item_img{
+  width: 100px;
+  height: auto;
+}
+.list_item{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.item{
+  width: 150px;
+ margin-left: 20px;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.spare_img{
+  width: 100px;
+  margin-bottom: 50px;
+}
+.item_name{
+  font-weight: 700;
+  color: #0d1129;
+}
+.item_character{
+  font-style: italic;
+}

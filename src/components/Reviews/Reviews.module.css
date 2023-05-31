@@ -1,0 +1,14 @@
+.list_item{
+list-style: none;
+
+}
+.item{
+  color: #212121;
+}
+.item_title{
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.item_text{
+  font-size: 14px;
+}

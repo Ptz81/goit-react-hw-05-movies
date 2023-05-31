@@ -2,24 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getTrendMovies } from '../../Service/Api';
 
-
-function Home() {
+function Home () {
   const location = useLocation();
-  const [filmList, setFilmList] = useState([]);
-
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
-    getTrendMovies().then(setFilmList);
+    getTrendMovies('week').then(setMovies);
   }, []);
-
   return (
-    <div>
+    <>
       <h1>Trending of the week</h1>
-      {filmList.length > 0 && (
+      {movies.length > 0 && (
         <ul>
-          {filmList.map(movie => (
+          {movies.map(movie => (
             <li key={movie.id}>
               <Link
-                to={{ pathname: `movies/${movie.id}`, state: { from: location, label: 'Go to Home' } }}
+                to={`/movies/${movie.id}`} state={{from: location, label: 'Go to Home Page'}}
               >
                 {movie.title}
               </Link>
@@ -27,7 +24,7 @@ function Home() {
           ))}
         </ul>
       )}
-    </div>
+    </>
   );
 }
 
