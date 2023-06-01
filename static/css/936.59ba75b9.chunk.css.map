@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/936.59ba75b9.chunk.css","mappings":"AAAA,wBACA,wBACA,CACA,uBACE,YACF,CACA,GACE,eACF","sources":["pages/Home/Home.module.css"],"sourcesContent":[".home_title{\ntext-transform: uppercase;\n}\n.home_list{\n  display: flex;\n}\nli{\n  list-style: none;\n}\n"],"names":[],"sourceRoot":""}
