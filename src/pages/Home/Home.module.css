@@ -1,0 +1,9 @@
+.home_title{
+text-transform: uppercase;
+}
+.home_list{
+  display: flex;
+}
+li{
+  list-style: none;
+}

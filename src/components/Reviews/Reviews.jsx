@@ -1,7 +1,7 @@
 import { getMovieReview } from '../../Service/Api';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import css from './Reviews.module.css'
+// import css from './Reviews.module.css'
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -11,12 +11,12 @@ const Reviews = () => {
       .then(data => setReviews(data.results || []));
   }, [movieId]);
   return (
-    <ul className={css.list_item}>
+    <ul className="list-group list-group-flush">
       {reviews.length > 0 ? (
         reviews.map(review => (
-          <li key={review.id} className={css.item}>
-            <h3 className={css.item_title}>{review.author}</h3>
-            <p className={css.item_text}>{review.content}</p>
+          <li key={review.id} className="list-group-item">
+            <h3 className="card-title">{review.author}</h3>
+            <p className="card-text">{review.content}</p>
           </li>
         ))
       ) : (

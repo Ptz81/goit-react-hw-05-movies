@@ -16,16 +16,16 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <ul className={css.list_item}>
+    <ul className="list-group list-group-flush">
       {cast.map(actor => (
-        <li key={actor.id} className={css.item}>
+        <li key={actor.id} className='list-group-item'>
           {actor.profile_path ? (
             <img className={css.item_img} src={IMAGE_URL + actor.profile_path} alt={actor.name} />
           ) : (
             <img className={css.spare_img} src={spareIMG} alt={actor.name} />
           )}
-          <p className={css.item_name}>{actor.name}</p>
-          <p className={css.item_character}>Character: {actor.character}</p>
+          <p className="card-text">{actor.name}</p>
+          <p className="card-text">Character: {actor.character}</p>
         </li>
       ))}
     </ul>

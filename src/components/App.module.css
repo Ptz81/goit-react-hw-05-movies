@@ -17,7 +17,9 @@ color: yellow;
 }
 .link{
   list-style: none;
-
+  display: flex;
+  gap: 20px;
+  padding: 0;
 }
 .link_title{
   text-transform: uppercase;

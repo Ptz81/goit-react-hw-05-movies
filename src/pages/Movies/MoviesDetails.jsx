@@ -56,16 +56,16 @@ const MoviesDetails = () => {
             <button className="btn btn-success m-2" onClick={handleClick}>
         {locationDetails?.state?.label || 'Go Back'}
       </button>
-      <div className={css.box}>
-        <img src={image} alt={title} />
+      <div className="card">
+        <img width={"200px"} src={image} alt={title} />
 
-        <div className={css.description}>
-          <h2>{title}</h2>
-          <p>User Score: {userScore}%</p>
-          <h3>Overview</h3>
-          <p>{overview}</p>
-          <h4>Genres</h4>
-              <p>{movieGenres}</p>
+        <div className="card-body">
+          <h2 className="card-title">{title}</h2>
+          <p className="card-text">User Score: {userScore}%</p>
+          <h3 className="card-title">Overview</h3>
+          <p className="card-text">{overview}</p>
+          <h4 className="card-title">Genres</h4>
+              <p className="card-text">{movieGenres}</p>
 
 
           <div className={css.addInfo}>
@@ -78,7 +78,7 @@ const MoviesDetails = () => {
                     from: locationDetails.state.from,
                     label: locationDetails.state.label,
                   }}
-                  className={css.link_title}
+                  className='btn btn-outline-primary'
                 >
                   Cast
                 </Link>
@@ -91,7 +91,7 @@ const MoviesDetails = () => {
                     from: locationDetails.state.from,
                     label: locationDetails.state.label,
                   }}
-                  className={css.link_title}
+                  className='btn btn-outline-primary'
                 >
                   Reviews
                 </Link>

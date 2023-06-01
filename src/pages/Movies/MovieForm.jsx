@@ -16,8 +16,9 @@ const MovieForm = ({ formSubmit }) => {
     <form className='d-flex mt-2' role='search' onSubmit={handleSubmit}>
       <input
         className='form-control me-2'
+
         type='search'
-        placeholder='Search'
+        placeholder='Type movie'
         aria-label='Search'
         onChange={handleChange}
         value={value}
