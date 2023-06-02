@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import css from './Movies.module.css'
 
 const MovieForm = ({ formSubmit }) => {
   const [value, setValue] = useState('');
@@ -11,9 +12,9 @@ const MovieForm = ({ formSubmit }) => {
     e.preventDefault();
     formSubmit(value);
   };
-
+// 'd-flex mt-2'
   return (
-    <form className='d-flex mt-2' role='search' onSubmit={handleSubmit}>
+    <form className={css.form} role='search' onSubmit={handleSubmit}>
       <input
         className='form-control me-2'
 
