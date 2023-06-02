@@ -95,8 +95,10 @@ const { title, overview, vote_average, poster_path, genres } = film || {};
                 <Link
                       to={`reviews`}
                   state={{
-                    from: locationDetails.state.from,
-                    label: locationDetails.state.label,
+                    // from: locationDetails.state.from,
+                    // label: locationDetails.state.label,
+                     from: locationDetails?.state?.from || '/',
+    label: locationDetails?.state?.label || '',
                   }}
                   className='btn btn-outline-primary'
                 >
