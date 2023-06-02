@@ -12,7 +12,7 @@ const IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
 
 const MoviesDetails = () => {
 //стан компоненту
-  const [film, setFilm] = useState([]);
+  const [film, setFilm] = useState('');
   //доступ до рядка та його властивостей
   const locationDetails = useLocation();
   //доступ до ід у рядку
