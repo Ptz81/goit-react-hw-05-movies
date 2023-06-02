@@ -11,15 +11,16 @@ import spareIMG from '../../components/img/spareIMG.png';
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
 
 const MoviesDetails = () => {
-//стан компоненту
-  const [film, setFilm] = useState('');
+
   //доступ до рядка та його властивостей
   const locationDetails = useLocation();
   //доступ до ід у рядку
   const { movieId } = useParams();
   //навігація по сайту
   const navigate = useNavigate();
-
+//стан компоненту
+  // const [film, setFilm] = useState([]);
+    const [film, setFilm] = useState(null);
   //виконання ефекту при зміні залежності movieId
   useEffect(() => {
     //Ця функція виконує запит на фільми, отримує дані
@@ -31,7 +32,8 @@ const MoviesDetails = () => {
       // } catch (error) {
       //   console.log(error);
       // }
-      getRequestedMovie(null, movieId).then(setFilm);
+    getRequestedMovie(null, movieId).then(setFilm);
+    //  getRequestedMovie(movieId).then(setFilm);
     // };
 
     // fetchFilmData();
@@ -40,14 +42,14 @@ const MoviesDetails = () => {
 
 //перевіряє наявність деяких властивостей в locationDetails та виконує навігацію на відповідний шлях.
   const handleClick = () => {
-    // navigate(locationDetails?.state?.from?.pathname ? `${locationDetails.state?.from?.pathname}${locationDetails.state?.from?.search}`
-    //     : '/',);
-    navigate(locationDetails.state?.from ?? '/');
+    navigate(locationDetails?.state?.from?.pathname ? `${locationDetails.state?.from?.pathname}${locationDetails.state?.from?.search}`
+        : '/',);
+    // navigate(locationDetails.state?.from ?? '/');
   };
 
-  const { title, overview, vote_average, poster_path, genres } = film;
-
-  const image = poster_path ? `${IMAGE_URL}/${film.poster_path}` : spareIMG;
+  // const { title, overview, vote_average, poster_path, genres } = film;
+const { title, overview, vote_average, poster_path, genres } = film || {};
+  const image = poster_path ? `${IMAGE_URL}${poster_path}` : spareIMG;
   const userScore = Math.round((Number(vote_average) * 100) / 10);
   const movieGenres = genres && genres.map(genre => genre.name).join(' ');
 

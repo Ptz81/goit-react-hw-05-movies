@@ -22,38 +22,6 @@ export async function getTrendMovies() {
   }
 }
 
-// export async function searchMovie(request) {
-//   try {
-//     const { data } = await axios(`${instance.params.PATH}/${instance.params.SEARCH}`, {
-//       params: {
-//         language: 'en-US',
-//         query: request,
-//         include_adult: false,
-//       },
-//     });
-
-//     return data.results;
-//   } catch (e) {
-//     console.error(e);
-//   }
-// }
-// export async function searchMovie(request) {
-//   try {
-//     const { data } = await axios(`${instance.defaults.baseURL}/search/movie`, {
-//       params: {
-//         api_key: instance.defaults.params.api_key,
-//         language: instance.defaults.params.language,
-//         query: request,
-//         include_adult: false,
-//       },
-//     });
-
-//     return data.results;
-//   } catch (e) {
-//     console.error(e);
-//     throw e;
-//   }
-// }
 export async function searchMovie(request) {
   try {
     const { data } = await instance.get("/search/movie", {
