@@ -40,8 +40,9 @@ const MoviesDetails = () => {
 
 //перевіряє наявність деяких властивостей в locationDetails та виконує навігацію на відповідний шлях.
   const handleClick = () => {
-    navigate(locationDetails?.state?.from?.pathname ? `${locationDetails.state?.from?.pathname}${locationDetails.state?.from?.search}`
-        : '/',);
+    // navigate(locationDetails?.state?.from?.pathname ? `${locationDetails.state?.from?.pathname}${locationDetails.state?.from?.search}`
+    //     : '/',);
+    navigate(locationDetails.state?.from ?? '/');
   };
 
   const { title, overview, vote_average, poster_path, genres } = film;
