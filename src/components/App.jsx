@@ -6,7 +6,7 @@ import Header from "./Header/Header";
 
 const Home = lazy(() => import('../pages/Home/Home.jsx'));
 const Movies = lazy(() => import('../pages/Movies/Movie.jsx'));
-const MovieDetails = lazy(() => import('../pages/Movies/MoviesDetails'));
+const MoviesDetails = lazy(() => import('../pages/Movies/MoviesDetails.jsx'));
 
 export const App = () => {
   return (
@@ -16,7 +16,7 @@ export const App = () => {
         <Routes>
           <Route path="/*" element={<Home/>} />
           <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/:movieId/*" element={<MovieDetails />}/>
+          <Route path="/movies/:movieId/*" element={<MoviesDetails />}/>
         </Routes>
         </Suspense>
       </div>
