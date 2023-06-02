@@ -30,13 +30,11 @@ const Movie = () => {
   const handleFormSubmit = (value) => {
     setSearchParams(value);
   };
-  
+
   return (
     <>
-      <Moviesearch search={searchParams} />
       <MovieForm formSubmit={handleFormSubmit} />
-            {/* <Moviesearch formSubmit={search => setSearchParams(search)} search={searchParams} />
-      <MovieForm search={searchParams}/> */}
+      <Moviesearch search={searchParams} />
     </>
 
   )
