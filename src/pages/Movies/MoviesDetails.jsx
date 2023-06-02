@@ -12,7 +12,7 @@ const IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
 
 const MoviesDetails = () => {
 //стан компоненту
-  const [film, setFilm] = useState(null);
+  const [film, setFilm] = useState([]);
   //доступ до рядка та його властивостей
   const locationDetails = useLocation();
   //доступ до ід у рядку
@@ -24,16 +24,17 @@ const MoviesDetails = () => {
   useEffect(() => {
     //Ця функція виконує запит на фільми, отримує дані
     //та встановлює їх в стан компонента за допомогою функції setFilm.
-    const fetchFilmData = async () => {
-      try {
-        const movieData = await getRequestedMovie(null, movieId);
-        setFilm(movieData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    // const fetchFilmData = async () => {
+      // try {
+      //   const movieData = await getRequestedMovie(null, movieId);
+      //   setFilm(movieData);
+      // } catch (error) {
+      //   console.log(error);
+      // }
+      getRequestedMovie(null, movieId).then(setFilm);
+    // };
 
-    fetchFilmData();
+    // fetchFilmData();
     //залежність ефекту від зміни значення movieId
   }, [movieId]);
 
@@ -50,6 +51,7 @@ const MoviesDetails = () => {
   const movieGenres = genres && genres.map(genre => genre.name).join(' ');
 
   return (
+
     <>
       {film && (
         <>
