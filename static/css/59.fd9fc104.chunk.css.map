@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/59.fd9fc104.chunk.css","mappings":"AAAA,qBAGE,YAAa,CACb,0BAA2B,CAC3B,QAAS,CAHT,WAAY,CADZ,WAKF","sources":["pages/Movies/Movies.module.css"],"sourcesContent":[".form{\n  width: 500px;\n  margin: auto;\n  display: flex;\n  flex-direction: row-reverse;\n  gap: 10px;\n}\n"],"names":[],"sourceRoot":""}
