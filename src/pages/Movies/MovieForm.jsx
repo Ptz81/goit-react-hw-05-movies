@@ -8,7 +8,7 @@ const MovieForm = ({ formSubmit, search }) => {
   //навігація по сторінках
   const navigate = useNavigate();
   //доступ до параметрів запиту URL і можливість змінювати їх.
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 // синхронізація поля вводу і параметром запиту URL
   useEffect(() => {
     if (search !== value) {
