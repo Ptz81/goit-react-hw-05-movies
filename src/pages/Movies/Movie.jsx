@@ -1,43 +1,20 @@
-// import { useParams } from "react-router-dom";
-// import MovieForm from './MovieForm';
-// import Moviesearch from './MovieSearch';
-
-// const Movie = () => {
-//   // const [searchParams, setSearchParams] = useParams();
-//   // const search = searchParams.get('search');
-//   const { search } = useParams();
-
-
-//   return (
-//     <>
-//       <Moviesearch formSubmit={search => setSearchParams({ search })} search={search} />
-//       <MovieForm search={search}/>
-//     </>
-
-//   )
-// }
-
-// export default Movie;
-import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import MovieForm from './MovieForm';
 import Moviesearch from './MovieSearch';
 
 const Movie = () => {
-  const { search } = useParams();
-  const [searchParams, setSearchParams] = useState(search);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
 
-  const handleFormSubmit = (value) => {
-    setSearchParams(value);
+  const handleFormSubmit = (search) => {
+    setSearchParams({ search });
   };
-
   return (
     <>
-      <MovieForm formSubmit={handleFormSubmit} />
-      <Moviesearch search={searchParams} />
+      <MovieForm formSubmit={handleFormSubmit} search={search} />
+      <Moviesearch search={search} />
     </>
-
-  )
+  );
 }
-
 export default Movie;
+

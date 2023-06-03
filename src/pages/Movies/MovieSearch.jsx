@@ -2,10 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { searchMovie } from '../../Service/Api';
 
-
-const MovieSearch = ({ search }) => {
-  // const [movies, setMovies] = useState([]);
-   const [movies, setMovies] = useState(null);
+const MovieSearch = ({ search }) => {  const [movies, setMovies] = useState(null);
   const location = useLocation();
   useEffect(() => {
     async function getSearchData() {

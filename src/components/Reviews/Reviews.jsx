@@ -1,8 +1,6 @@
 import { getMovieReview } from '../../Service/Api';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import css from './Reviews.module.css'
-
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();

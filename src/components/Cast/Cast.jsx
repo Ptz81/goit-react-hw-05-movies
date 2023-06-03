@@ -1,21 +1,17 @@
 import { getMovieCredits } from '../../Service/Api';
-
 import spareIMG from '../../components/img/spareIMG.png';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import css from './Cast.module.css'
 
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
-
 const Cast = () => {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
-
   useEffect(() => {
     getMovieCredits( movieId)
       .then(data => setCast(data.cast || []));
   }, [movieId]);
-
   return (
     <ul className="list-group list-group-flush">
       {cast.map(actor => (
@@ -32,5 +28,4 @@ const Cast = () => {
     </ul>
   );
 }
-
 export default Cast;

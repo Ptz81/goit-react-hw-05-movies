@@ -5,7 +5,6 @@ import css from './Home.module.css'
 
 function Home () {
   const location = useLocation();
-  // const [movies, setMovies] = useState([]);
     const [movies, setMovies] = useState(null);
   useEffect(() => {
     getTrendMovies().then(setMovies);
@@ -13,7 +12,6 @@ function Home () {
   return (
     <>
       <h1 className={css.home_title}>Trending of the week</h1>
-      {/* {movies.length > 0 && ( */}
             {movies && (
         <ul className='list-group list-group-flush'>
           {movies.map(movie => (

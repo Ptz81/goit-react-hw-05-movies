@@ -5,3 +5,7 @@
   flex-direction: row-reverse;
   gap: 10px;
 }
+.emptySearchMessage {
+  text-transform: uppercase;
+  color: rgb(82, 34, 34);
+}
